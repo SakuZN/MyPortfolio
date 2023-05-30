@@ -217,55 +217,109 @@
 	------------------------------------------------------ */
 
 	/* local validation */
-	$('#contactForm').validate({
+	$(document).ready(function() {
+		/* Form submission */
+		$('#contactForm').submit(function(e) {
+			e.preventDefault();
 
-		/* submit via ajax */
-		submitHandler: function(form) {
+			// Validate the form using jQuery Validate
+			if (!$(this).valid()) {
+				return;
+			}
 
+			var recipient = "zach_noche@dlsu.edu.ph";
+			var sender = $("#contactEmail").val();
+			var sender_name = $("#contactName").val();
+			var subject = $("#contactSubject").val().trim();
+			var message = $("#contactMessage").val();
+			var secure_token = "3d542035-77b7-43cc-817f-a9c26c239a78";
+
+			var body =
+				"<strong>Name:</strong> " + sender_name + "<br><br>"
+				+ "<strong>Email:</strong> <a href='mailto:" + sender + "'>" + sender + "</a><br><br>"
+				+ "<strong>Message:</strong><br>" + message;
+
+
+			if (subject === "") {
+				subject = "My Portfolio Email";
+			}
+
+
+			// Show the loading indicator
 			var sLoader = $('#submit-loader');
+			sLoader.fadeIn();
 
-			$.ajax({      	
+			// Configure SMTP.js settings
+			Email.send({
+				SecureToken: secure_token,
+				To: recipient,
+				From: recipient,
+				Subject: subject,
+				Body: body
+			})
+				.then(function(message) {
+					// Message was sent successfully
+					sLoader.fadeOut();
+					$('#message-warning').hide();
+					$('#contactForm').fadeOut();
+					$('#message-success').fadeIn();
+				})
+				.catch(function(error) {
+					// There was an error sending the email
+					sLoader.fadeOut();
+					$('#message-warning').html("Something went wrong. Please try again.");
+					$('#message-warning').fadeIn();
+				});
+		});
 
-		      type: "POST",
-		      url: "inc/sendEmail.php",
-		      data: $(form).serialize(),
-		      beforeSend: function() { 
-
-		      	sLoader.fadeIn(); 
-
-		      },
-		      success: function(msg) {
-
-	            // Message was sent
-	            if (msg == 'OK') {
-	            	sLoader.fadeOut(); 
-	               $('#message-warning').hide();
-	               $('#contactForm').fadeOut();
-	               $('#message-success').fadeIn();   
-	            }
-	            // There was an error
-	            else {
-	            	sLoader.fadeOut(); 
-	               $('#message-warning').html(msg);
-		            $('#message-warning').fadeIn();
-	            }
-
-		      },
-		      error: function() {
-
-		      	sLoader.fadeOut(); 
-		      	$('#message-warning').html("Something went wrong. Please try again.");
-		         $('#message-warning').fadeIn();
-
-		      }
-
-	      });     		
-  		}
-
+		/* Form validation using jQuery Validate */
+		$('#contactForm').validate({
+			rules: {
+				contactName: {
+					required: true,
+					minlength: 2
+				},
+				contactEmail: {
+					required: true,
+					email: true
+				},
+				contactSubject: {
+					required: false
+				},
+				contactMessage: {
+					required: true
+				}
+			},
+			messages: {
+				contactName: {
+					required: "Please enter your name",
+					minlength: "Name must be at least 2 characters long"
+				},
+				contactEmail: {
+					required: "Please enter your email address",
+					email: "Please enter a valid email address"
+				},
+				contactMessage: {
+					required: "Please enter your message"
+				}
+			},
+			errorPlacement: function(error, element) {
+				error.appendTo(element.closest(".form-field"));
+			},
+			highlight: function(element, errorClass, validClass) {
+				$(element).addClass(errorClass).removeClass(validClass);
+				$(element).closest(".form-field").addClass(errorClass);
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				$(element).removeClass(errorClass).addClass(validClass);
+				$(element).closest(".form-field").removeClass(errorClass);
+			}
+		});
 	});
 
 
- 	/*----------------------------------------------------- */
+
+	/*----------------------------------------------------- */
   	/* Back to top
    ------------------------------------------------------- */ 
 	var pxShow = 300; // height on which the button will show
