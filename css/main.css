@@ -1098,8 +1098,8 @@ header .top-bar {
 	background: #000000;
 	min-width: 220px;
 	min-height: 66px;
-	position: absolute;
-	left: 90px;
+	position: fixed;
+	left: 0;
 	top: 0;
 }
 header .logo {
@@ -1790,7 +1790,6 @@ header .logo a {
  * ------------------------------------------------------------------- 
  */
 #portfolio {
-	background: #FFFFFF;
 	padding-top: 12rem;
 	padding-bottom: 12rem;
 }
@@ -1806,6 +1805,9 @@ header .logo a {
 	-webkit-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
+
+	border: 3px solid #833c3c;
+	border-radius: 10px;
 }
 
 #portfolio .overlay {
@@ -1865,6 +1867,7 @@ header .logo a {
 	-webkit-transform: scale(1.05);
 	-ms-transform: scale(1.05);
 	transform: scale(1.05);
+	border-color: #963232;
 }
 
 /**
