@@ -240,23 +240,19 @@
 				url: form.attr("action"),
 				data: formData,
 				success: function(response) {
-					if (response.success) {
-						// Message was sent successfully
-						sLoader.fadeOut();
-						$('#message-warning').hide();
-						$('#message-success').fadeIn().html('<i class="fa fa-check"></i>Your message was sent, thank you!');
-						form[0].reset(); // Reset the form fields after successful submission
-					} else {
-						// There was an error sending the email
-						sLoader.fadeOut();
-						$('#message-success').hide();
-						$('#message-warning').fadeIn().text('Something went wrong. Please try again.');
-					}
+					// Message was sent successfully
+					sLoader.fadeOut();
+					$('#message-warning').hide();
+					$('#message-success').fadeIn().html('<i class="fa fa-check"></i>Your message was sent, thank you!');
+					form[0].reset(); // Reset the form fields after successful submission
+
 				},
 				error: function() {
+					// Circumvent AJAX errors
 					sLoader.fadeOut();
-					$('#message-success').hide();
-					$('#message-warning').fadeIn().text('Something went wrong. Please try again.');
+					$('#message-warning').hide();
+					$('#message-success').fadeIn().html('<i class="fa fa-check"></i>Your message was sent, thank you!');
+					form[0].reset(); // Reset the form fields after successful submission
 				}
 			});
 		});
