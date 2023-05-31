@@ -227,49 +227,38 @@
 				return;
 			}
 
-			var recipient = "zach_noche@dlsu.edu.ph";
-			var sender = $("#contactEmail").val();
-			var sender_name = $("#contactName").val();
-			var subject = $("#contactSubject").val().trim();
-			var message = $("#contactMessage").val();
-			var secure_token = "3d542035-77b7-43cc-817f-a9c26c239a78";
-
-			var body =
-				"<strong>Name:</strong> " + sender_name + "<br><br>"
-				+ "<strong>Email:</strong> <a href='mailto:" + sender + "'>" + sender + "</a><br><br>"
-				+ "<strong>Message:</strong><br>" + message;
-
-
-			if (subject === "") {
-				subject = "My Portfolio Email";
-			}
-
-
 			// Show the loading indicator
 			var sLoader = $('#submit-loader');
 			sLoader.fadeIn();
 
-			// Configure SMTP.js settings
-			Email.send({
-				SecureToken: secure_token,
-				To: recipient,
-				From: recipient,
-				Subject: subject,
-				Body: body
-			})
-				.then(function(message) {
-					// Message was sent successfully
+			// Configure FreeForm settings
+			var form = $(this);
+			var formData = form.serialize();
+
+			$.ajax({
+				type: "POST",
+				url: form.attr("action"),
+				data: formData,
+				success: function(response) {
+					if (response.success) {
+						// Message was sent successfully
+						sLoader.fadeOut();
+						$('#message-warning').hide();
+						$('#message-success').fadeIn().html('<i class="fa fa-check"></i>Your message was sent, thank you!');
+						form[0].reset(); // Reset the form fields after successful submission
+					} else {
+						// There was an error sending the email
+						sLoader.fadeOut();
+						$('#message-success').hide();
+						$('#message-warning').fadeIn().text('Something went wrong. Please try again.');
+					}
+				},
+				error: function() {
 					sLoader.fadeOut();
-					$('#message-warning').hide();
-					$('#contactForm').fadeOut();
-					$('#message-success').fadeIn();
-				})
-				.catch(function(error) {
-					// There was an error sending the email
-					sLoader.fadeOut();
-					$('#message-warning').html("Something went wrong. Please try again.");
-					$('#message-warning').fadeIn();
-				});
+					$('#message-success').hide();
+					$('#message-warning').fadeIn().text('Something went wrong. Please try again.');
+				}
+			});
 		});
 
 		/* Form validation using jQuery Validate */
