@@ -1792,11 +1792,14 @@ header .logo a {
 #portfolio {
 	padding-top: 12rem;
 	padding-bottom: 12rem;
+
 }
 #portfolio .folio-item {
 	padding: 0;
 	position: relative;
 	overflow: hidden;
+	border: 3px solid #833c3c;
+	border-radius: 15px;
 }
 #portfolio .folio-item img {
 	vertical-align: middle;
@@ -1806,8 +1809,6 @@ header .logo a {
 	-ms-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 
-	border: 3px solid #833c3c;
-	border-radius: 10px;
 }
 
 #portfolio .overlay {
@@ -1822,6 +1823,7 @@ header .logo a {
 	-webkit-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
+
 }
 
 #portfolio .folio-item-table {
@@ -1868,6 +1870,7 @@ header .logo a {
 	-ms-transform: scale(1.05);
 	transform: scale(1.05);
 	border-color: #963232;
+
 }
 
 /**
