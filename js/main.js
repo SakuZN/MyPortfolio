@@ -10,6 +10,27 @@
 	"use strict";
 
 	/*---------------------------------------------------- */
+	/* Portfolio Items
+	------------------------------------------------------ */
+
+	//Initialize the folioContainer variable
+	let folioContainer = document.getElementById("folio-wrapper");
+
+	//Loop through the folioItems array
+	folioItems.forEach(folioItem => {
+		//Create the folio item
+		let folioItemElement = createFolioItem(folioItem);
+		//Append the folio and Modal item to the folio container
+		folioContainer.appendChild(folioItemElement);
+	});
+	//Loop through the folioItems array
+	folioItems.forEach(folioItem => {
+		//Create the folio item
+		let modalPopupElement = createModalPopup(folioItem);
+		folioContainer.appendChild(modalPopupElement);
+	});
+
+	/*---------------------------------------------------- */
 	/* Preloader
 	------------------------------------------------------ */ 
    $(window).load(function() {
