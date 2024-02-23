@@ -967,29 +967,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	position: relative;
 	height: 100%;
 }
-.skill-bars li .progress span {
-	position: absolute;
-	right: 0;
-	top: -3.6rem;
-	display: block;
-	font-family: "poppins-regular", sans-serif;
-	color: white;
-	font-size: 1.1rem;
-	line-height: 1;
-	background: #313131;
-	padding: .6rem .6rem;
-	border-radius: 3px;
-}
-.skill-bars li .progress span::after {
-	position: absolute;
-	left: 50%;
-	bottom: -5px;
-	margin-left: -5px;
-	border-right: 5px solid transparent;
-	border-left: 5px solid transparent;
-	border-top: 5px solid #313131;
-	content: "";
-}
+
 
 .skill-bars li .percent5   { width: 5%; }
 .skill-bars li .percent10  { width: 10%; }
@@ -1802,6 +1780,9 @@ header .logo a {
 	border-radius: 15px;
 }
 #portfolio .folio-item img {
+	width: 80%; /* adjust this as needed */
+	height: auto; /* maintain aspect ratio */
+	margin: auto; /* center the image */
 	vertical-align: middle;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
