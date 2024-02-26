@@ -11,7 +11,7 @@ let folioItems = [
         image: "images/portfolio/gamejam.jpg",
         imageModal: "images/portfolio/modals/m-gamejam.png",
         descTitle: "C Game Jam",
-        description: "Game Jam Hosted by the La Salle Computer Society. The game was made in C and took a week\n" +
+        description: "A Game Jam Hosted by the La Salle Computer Society. The game was made in C and took a week\n" +
             "to finish. The theme of the game jam was \"Elevator\". Thus, the game is named \"Hellevator\".\n" +
             "It tells a story of a man's journey to hell to find his lost love, encountering infamous\n" +
             "characters in history.",
@@ -115,6 +115,19 @@ let folioItems = [
         link: "https://sakuzn.github.io/MarkovChainSimulation/",
         alt: "Markov Chain",
         modalNum: "modal-09"
+    },
+    {
+        titles: ["Array"],
+        types: ["A Web Application for New Programmers"],
+        image: "images/portfolio/array.png",
+        imageModal: "images/portfolio/modals/m-array.png",
+        descTitle: "Array Web Application",
+        description: "A startup project that aims to help new programmers learn the basics by providing a journaling platform with mentorship opportunities. " +
+            "Built over 3 months using the Scrum SDLC methodology, this web application leverages React, Next.js, and Supabase for a dynamic and scalable user experience.",
+        categories: "Web Development | Back-end Development | Scrum SDLC | React | Next.js | Supabase",
+        link: "https://array-showcase.vercel.app/",
+        alt: "Array",
+        modalNum: "modal-10",
     },
 ]
 

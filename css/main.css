@@ -1780,9 +1780,11 @@ header .logo a {
 	border-radius: 15px;
 }
 #portfolio .folio-item img {
-	width: 80%; /* adjust this as needed */
-	height: auto; /* maintain aspect ratio */
-	margin: auto; /* center the image */
+	width: 80%;
+	height: auto;
+	margin: auto;
+	display: block;
+	justify-items: center;
 	vertical-align: middle;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
